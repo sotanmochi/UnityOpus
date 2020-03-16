@@ -33,6 +33,18 @@ int OpusEncoderSetSignal(OpusEncoder *encoder,int signal){
     return opus_encoder_ctl(encoder, OPUS_SET_SIGNAL(signal));
 }
 
+int OpusEncoderSetInbandFec(OpusEncoder *encoder, bool fec_enabled){
+    return opus_encoder_ctl(encoder, OPUS_SET_INBAND_FEC(fec_enabled));
+}
+
+int OpusEncoderSetPacketLossPerc(OpusEncoder *encoder, int packet_loss_perc){
+    return opus_encoder_ctl(encoder, OPUS_SET_PACKET_LOSS_PERC(packet_loss_perc));
+}
+
+int OpusEncoderGetLookahead(OpusEncoder *encoder, opus_int32 *lookahead_samples){
+    return opus_encoder_ctl(encoder, OPUS_GET_LOOKAHEAD(lookahead_samples));
+}
+
 OpusDecoder *OpusDecoderCreate(opus_int32 samplingFrequency,int channels,int *error){
     return opus_decoder_create(samplingFrequency, channels, error);
 }
