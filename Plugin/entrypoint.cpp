@@ -76,6 +76,30 @@ extern "C" {
     return opus_encoder_ctl(encoder, OPUS_SET_SIGNAL(signal));
   }
 
+  UNITY_INTERFACE_EXPORT int UNITY_INTERFACE_API OpusEncoderSetInbandFec(
+	  OpusEncoder* encoder,
+	  bool fec_enabled
+  )
+  {
+	  return opus_encoder_ctl(encoder, OPUS_SET_INBAND_FEC(fec_enabled));
+  }
+
+  UNITY_INTERFACE_EXPORT int UNITY_INTERFACE_API OpusEncoderSetPacketLossPerc(
+	  OpusEncoder* encoder,
+	  int packet_loss_perc
+  )
+  {
+	  return opus_encoder_ctl(encoder, OPUS_SET_PACKET_LOSS_PERC(packet_loss_perc));
+  }
+
+  UNITY_INTERFACE_EXPORT int UNITY_INTERFACE_API OpusEncoderGetLookahead(
+	  OpusEncoder* encoder,
+	  opus_int32* lookahead_samples
+  )
+  {
+	  return opus_encoder_ctl(encoder, OPUS_GET_LOOKAHEAD(lookahead_samples));
+  }
+
   UNITY_INTERFACE_EXPORT OpusDecoder* UNITY_INTERFACE_API OpusDecoderCreate(
     opus_int32 sampling_frequency,
     int channels,
